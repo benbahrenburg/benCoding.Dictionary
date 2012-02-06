@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>showDialog</title>
+<style type="text/css">
+.auto-style1 {
+	margin-left: 40px;
+}
+.auto-style5 {
+	margin-left: 80px;
+}
+.auto-style6 {
+	margin-left: 120px;
+}
+.auto-style7 {
+	border: 1px solid #000000;
+	background-color: #E8E8E8;
+}
+.auto-style8 {
+	border: 1px solid #000000;
+}
+</style>
+
+</head>
+
+<body>
+
+<h4><a href="index.html" style="text-decoration: none">benCoding.Dictionary Module</a> </h4>
+<h1>Method: showDialog</h1>
+<hr />
+<h2 class="auto-style1">Description</h2>
+<p class="auto-style5">The showDialog method opens a modal dialog with the 
+definition of the term provided. If the dictionary service is unable to find the 
+definition the words &quot;No definition found.&quot; will be displayed.</p>
+<h2 class="auto-style1">Accessing the benCoding.Dictionary Module</h2>
+<p class="auto-style5">Before you can start using any of the module&#39;s functionality you need to use 
+the require keyword to make the module accessible from JavaScript. To access this module from JavaScript, you would do the following:</p>
+<div style="border-width: thin; border-style: solid; background-color: #E8E8E8;" class="auto-style6">
+	<p class="auto-style1"><strong>var referenceLibrary = require('bencoding.dictionary').createReferenceLibrary();</strong></p>
+</div>
+
+<h2 class="auto-style1">Using showDialog</h2>
+<p class="auto-style5">The below example shows how to create the 
+ReferenceLibrary object and check if the term provided, &quot;life&quot;, has a definition 
+available then open a Modal dialog with the definition.</p>
+<div style="border-width: thin; border-style: solid; background-color: #E8E8E8;" class="auto-style6">
+	<p class="auto-style1"><strong>
+		var ourTerm = "life"; <br />
+	function termDialogBoxHasBeenClosed(){<br />
+&nbsp;&nbsp;&nbsp; alert(&#39;Term Window Closed&#39;);<br />
+	};<br />
+	function termDialogHadError(e){<br />
+&nbsp;&nbsp;&nbsp; alert("Term Lookup Errored Due To: " + e.error);<br />
+	};</strong></p>
+	<p class="auto-style1"><strong>
+		<br />		
+	if((referenceLibrary.isSupported())&amp;&amp;(referenceLibrary.wordHasDefinition(ourTerm ))){</strong></p>
+	<div>
+		<p class="auto-style1"><strong>&nbsp;&nbsp;&nbsp;&nbsp; Ti.API.info(&quot;You can add an event to be called if 
+		there is an error&quot;);</strong>
+		<br />
+		<strong>&nbsp;&nbsp;&nbsp;&nbsp; referenceLibrary.</strong><wbr><strong>addEventListener(&#39;errored&#39;, 
+		termDialogHadError);</strong></p>
+	</div>
+	<div>
+		<p class="auto-style1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ti.API.info(&quot;You can add an event to be called 
+		when the definition dialog is closed&quot;);</strong>
+		<br />
+		<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; referenceLibrary.</strong><wbr><strong>addEventListener(&#39;closed&#39;, 
+		termDialogBoxHasBeenClosed);</strong></p>
+	</div>
+	<p class="auto-style1"><strong>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ti.API.info(&quot;Does Apple 
+	know the meeting of life?&quot;);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	referenceLibrary.showDialog({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	term:ourTerm , //This is the term to search for (REQUIRED)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; animated:true, 
+	//Indicate if the dialog should be animated on open (OPTIONAL)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	modalTransitionStyle:Ti.UI.iPhone.MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL 
+	//(OPTIONAL)<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	});</strong></p>
+	<p class="auto-style1"><strong>}else{</strong></p>
+	<p class="auto-style1"><strong>&nbsp;&nbsp;&nbsp;&nbsp; alert(&#39;This feature is 
+	not supported or the word wasn&#39;t found&#39;);</strong></p>
+	<p class="auto-style1"><strong>};</strong></p>
+</div>
+
+
+<p class="auto-style5">&nbsp;</p>
+<h2 class="auto-style1">Why do I use this method?</h2>
+
+<p class="auto-style5">There are a few reasons why you would use this method.&nbsp; 
+The most common is to check if your term has a definition before calling the 
+showDialog.&nbsp;&nbsp; </p>
+<h4 class="auto-style5">What if I don&#39;t use isSupported?</h4>
+<p class="auto-style6">If you call the showDialog and your device does not 
+support the dictionary feature the definition modal dialog will not appear and 
+the errored callback function will be fired (if defined).</p>
+<h4 class="auto-style5">What if I the dictionary can&#39;t find my term?</h4>
+<p class="auto-style6">If you call the showDialog and the dictionary cannot find 
+the provided term, the modal dialog will appear displaying the message &quot;No 
+definition found.&quot;.</p>
+
+<h2 class="auto-style1">Arguments</h2>
+<table class="auto-style5" style="width: 74%">
+	<tr>
+		<td class="auto-style7" style="width: 129px"><strong>Name</strong></td>
+		<td class="auto-style7" style="width: 113px"><strong>Type</strong></td>
+		<td class="auto-style7"><strong>Summary</strong></td>
+	</tr>
+	<tr class="auto-style5">
+		<td class="auto-style8" style="width: 129px">term</td>
+		<td class="auto-style8" style="width: 113px">String</td>
+		<td class="auto-style8">Term or word for the dictionary service to find 
+		and display the definition for <strong>(required)</strong></td>
+	</tr>
+	<tr class="auto-style5">
+		<td class="auto-style8" style="width: 129px">animated</td>
+		<td class="auto-style8" style="width: 113px">boolean</td>
+		<td class="auto-style8">Indicate if the dialog should be animated on 
+		open.&nbsp; Use of this parameter is <strong>optional</strong>. If no 
+		parameter is provided no animation will be performed.</td>
+	</tr>
+	<tr class="auto-style5">
+		<td class="auto-style8" style="width: 129px">modalTransitionStyle</td>
+		<td class="auto-style8" style="width: 113px">Number</td>
+		<td class="auto-style8">When the Definition Dialog is dismissed a 
+		transition will take place.&nbsp; You can use any of the
+		<a href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.UI.iPhone-module">
+		MODAL_TRANSITION_STYLE</a> properties available by Titanium. This 
+		parameter is <strong>optional</strong>, if not provided not transition 
+		will be performed.</td>
+	</tr>
+</table>
+
+<h2 class="auto-style1">Events</h2>
+<table class="auto-style5" style="width: 74%">
+	<tr>
+		<td class="auto-style7" style="width: 129px"><strong>Name</strong></td>
+		<td class="auto-style7"><strong>Summary</strong></td>
+	</tr>
+	<tr class="auto-style5">
+		<td class="auto-style8" style="width: 129px">closed</td>
+		<td class="auto-style8">Fired when Definition Dialog is closed. No arguments are provided to the callback function.
+		</td>
+	</tr>
+	<tr class="auto-style5">
+		<td class="auto-style8" style="width: 129px">errored</td>
+		<td class="auto-style8">Fired when/if there is an error.&nbsp;  The argument error is provided to the callback function. See the above snippet for an example.
+		</td>
+	</tr>
+	</table>
+
+</body>
+
+</html>

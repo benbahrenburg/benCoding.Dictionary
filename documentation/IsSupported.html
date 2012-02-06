@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>isSupported</title>
+<style type="text/css">
+.auto-style1 {
+	margin-left: 40px;
+}
+.auto-style5 {
+	margin-left: 80px;
+}
+.auto-style6 {
+	margin-left: 120px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h4><a href="index.html" style="text-decoration: none">benCoding.Dictionary Module</a> </h4>
+<h1>Method: isSupported</h1>
+<hr />
+<h2 class="auto-style1">Description</h2>
+<p class="auto-style5">The isSupported method is used to determine if the device 
+has the dictionary service available.&nbsp; Please note Apple introduced this 
+feature with iOS 5 so this feature will not work on devices running older 
+versions of iOS.</p>
+<p class="auto-style5">For a detailed example please see the app.js included in the example folder.</p>
+<h2 class="auto-style1">Accessing the benCoding.Dictionary Module</h2>
+<p class="auto-style5">Before you can start using any of the module&#39;s functionality you need to use 
+the require keyword to make the module accessible from JavaScript. To access this module from JavaScript, you would do the following:</p>
+<div style="border-width: thin; border-style: solid; background-color: #E8E8E8;" class="auto-style6">
+	<p class="auto-style1"><strong>var referenceLibrary = require('bencoding.dictionary').createReferenceLibrary();</strong></p>
+</div>
+
+<h2 class="auto-style1">Using isSupported</h2>
+<p class="auto-style5">The below example shows how to create the 
+ReferenceLibrary object and check if this feature is supported.</p>
+<div style="border-width: thin; border-style: solid; background-color: #E8E8E8;" class="auto-style6">
+	<p class="auto-style1"><strong>
+	Ti.API.info("This feature is only supported in iOS5 and above");
+	<br />
+	Ti.API.info("Check if we have the min OS version needed");
+	<br />
+	var featureSupported = referenceLibrary.isSupported();
+	<br />
+	Ti.API.info("Is Supported? => " + featureSupported);
+	</strong></p>
+</div>
+
+
+<p class="auto-style5">&nbsp;</p>
+<h2 class="auto-style1">Why do I use this method?</h2>
+
+<p class="auto-style5">You will want to check this method before trying to use 
+of the module&#39;s features.&nbsp; Please review the documentation for each method 
+on what happens if the method is called but the device does not support the 
+feature.</p>
+
+</body>
+
+</html>

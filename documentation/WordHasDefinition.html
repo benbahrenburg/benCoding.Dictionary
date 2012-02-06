@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>wordHasDefinition</title>
+<style type="text/css">
+.auto-style1 {
+	margin-left: 40px;
+}
+.auto-style5 {
+	margin-left: 80px;
+}
+.auto-style6 {
+	margin-left: 120px;
+}
+.auto-style7 {
+	border: 1px solid #000000;
+	background-color: #E8E8E8;
+}
+.auto-style8 {
+	border: 1px solid #000000;
+}
+</style>
+
+</head>
+
+<body>
+
+<h4><a href="index.html" style="text-decoration: none">benCoding.Dictionary Module</a> </h4>
+<h1>Method: wordHasDefinition</h1>
+<hr />
+<h2 class="auto-style1">Description</h2>
+<p class="auto-style5">The wordHasDefinition method returns a boolean indicator 
+on whether or not the Apple Dictionary service was able to find the provided 
+definition.</p>
+<p class="auto-style5">For a detailed example please see the app.js included in the example folder.</p>
+<h2 class="auto-style1">Accessing the benCoding.Dictionary Module</h2>
+<p class="auto-style5">Before you can start using any of the module&#39;s functionality you need to use 
+the require keyword to make the module accessible from JavaScript. To access this module from JavaScript, you would do the following:</p>
+<div style="border-width: thin; border-style: solid; background-color: #E8E8E8;" class="auto-style6">
+	<p class="auto-style1"><strong>var referenceLibrary = require('bencoding.dictionary').createReferenceLibrary();</strong></p>
+</div>
+
+<h2 class="auto-style1">Using wordHasDefinition</h2>
+<p class="auto-style5">The below example shows how to create the 
+ReferenceLibrary object and check if the term provided, &quot;life&quot;, has a definition 
+available.</p>
+<div style="border-width: thin; border-style: solid; background-color: #E8E8E8;" class="auto-style6">
+	<p class="auto-style1"><strong>if(referenceLibrary.isSupported()){</strong></p>
+	<p class="auto-style1"><strong>&nbsp;&nbsp;&nbsp; Ti.API.info(&quot;Does Apple 
+	know the meeting of life?&quot;);<br />
+&nbsp;&nbsp;&nbsp; var hasDefinition = 
+	referenceLibrary.wordHasDefinition(&#39;life&#39;);<br />
+&nbsp;&nbsp;&nbsp; Ti.API.info(&quot;Definition found? =&gt; &quot; + hasDefinition);</strong></p>
+	<p class="auto-style1"><strong>}else{</strong></p>
+	<p class="auto-style1"><strong>&nbsp;&nbsp;&nbsp;&nbsp; alert(&#39;This feature is 
+	not supported&#39;);</strong></p>
+	<p class="auto-style1"><strong>};</strong></p>
+	<p class="auto-style1">&nbsp;</p>
+</div>
+
+
+<p class="auto-style5">&nbsp;</p>
+<h2 class="auto-style1">Why do I use this method?</h2>
+
+<p class="auto-style5">There are a few reasons why you would use this method.&nbsp; 
+The most common is to check if your term has a definition before calling the 
+showDialog.&nbsp;&nbsp; </p>
+<h4 class="auto-style5">What if I don&#39;t use isSupported?</h4>
+<p class="auto-style6">If you call the wordHasDefinition and your device does 
+not support the dictionary feature a boolean false will be returned for any term 
+you lookup.</p>
+
+<h2 class="auto-style1">Arguments</h2>
+<table class="auto-style5" style="width: 74%">
+	<tr>
+		<td class="auto-style7" style="width: 129px"><strong>Name</strong></td>
+		<td class="auto-style7" style="width: 95px"><strong>Type</strong></td>
+		<td class="auto-style7"><strong>Summary</strong></td>
+	</tr>
+	<tr class="auto-style5">
+		<td class="auto-style8" style="width: 129px">term</td>
+		<td class="auto-style8" style="width: 95px">String</td>
+		<td class="auto-style8">See above for example</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

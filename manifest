@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0
+apiversion: 2
+description: bencoding.dictionary provides a wrapper around the UIReferenceLibraryViewController introduced in iOS5. This "dictionary" gives you access to the native Reference Library in iOS from within Titanium
+author: benCoding.Com
+license: Please see the LICENSE file for specific details.
+copyright: Copyright (c) 2012 by benCoding.Com
+
+
+# these should not be edited
+name: dictionary
+moduleid: bencoding.dictionary
+guid: 12604cea-a670-41eb-af77-cd5f0c103a0c
+platform: iphone
+minsdk: 1.8.1

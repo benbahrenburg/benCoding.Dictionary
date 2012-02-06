@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>benCoding.Network Module</title>
+<style type="text/css">
+.auto-style1 {
+	margin-left: 40px;
+}
+.auto-style2 {
+	margin-left: 80px;
+}
+.auto-style6 {
+	border: 1px solid #000000;
+	background-color: #E8E8E8;
+	font-size: large;
+}
+.auto-style7 {
+	border: 1px solid #000000;
+}
+.auto-style8 {
+	margin-left: 120px;
+}
+.auto-style9 {
+	margin-left: 160px;
+}
+</style>
+</head>
+
+<body>
+
+<h1 class="auto-style1">benCoding.Dictionary Module</h1>
+<hr />
+<h2 class="auto-style1">Description</h2>
+<p class="auto-style2">Use the native iOS dictionary service within your Titanium application.&nbsp; 
+This module provides Titanium accessibility to Apple&#39;s native
+<a href="http://developer.apple.com/library/ios/#documentation/uikit/reference/UIReferenceLibraryViewControllerClassRef/Reference/Reference.html">
+UIReferenceLibraryViewController</a>&nbsp; introduced in iOS5.</p>
+<h2 class="auto-style1">Before You Start</h2>
+<ul class="auto-style2">
+	<li>This module requires iOS 5 or greater
+	<li>This is an iOS module designed to work with Titanium SDK 1.8.1 or 
+	greater.</li>
+	<li>Before using this module you first need to install the package. If you 
+	need instructions on how to install a 3rd party module please read
+	<a href="https://wiki.appcelerator.org/display/guides/Configuring+Apps+to+Use+Modules">
+	this installation guide</a>.</li>
+	<li>If you would like access to the source code, please visit us on github 	<a href="https://github.com/benbahrenburg/TiNetworkHelpers">here</a>..</li>
+</ul>
+<h2 class="auto-style1">Accessing the benCoding.Dictionary Module</h2>
+<p class="auto-style2">To access this module from JavaScript, you would do the following:
+<div style="border-width: thin; border-style: solid; background-color: #E8E8E8;" class="auto-style8">
+	<p class="auto-style1"><strong>var referenceLibrary = require('bencoding.dictionary').createReferenceLibrary();</strong></p>
+</div>
+
+
+<h2 class="auto-style1">Features</h2>
+<h3 class="auto-style2">Checking If Feature Supported</h3>
+<p class="auto-style8">This method returns a boolean indicator on whether or not Apple's dictionary services are supported. Please note you need to target iOS 5 or greater to 
+use the native UIReferenceLibraryViewController component.
+</p>
+<p class="auto-style8">For a detailed description of this method please click 
+<a href="IsSupported.html">here</a>.</p>
+<p class="auto-style8">The below sample shows how you can check if this feature is supported.</p>
+<div style="border-width: thin; border-style: solid; background-color: #E8E8E8;" class="auto-style9">
+	<p class="auto-style1"><strong>
+	Ti.API.info("This feature is only supported in iOS5 and above");
+	<br />
+	Ti.API.info("Check if we have the min OS version needed");
+	<br />
+	var featureSupported = referenceLibrary.isSupported();
+	<br />
+	Ti.API.info("Is Supported? => " + featureSupported);
+	</strong></p>
+</div>
+
+<h3 class="auto-style2">Is Definition Available?</h3>
+<p class="auto-style8">This method returns a boolean indicator on whether or not 
+the Apple Dictionary service was able to find the provided definition.<br />
+<br />
+It is recommended that you use this method to first check if there is a 
+definition available before opening a dialog for the definition.</p>
+<p class="auto-style8">For a detailed description of this method please click 
+<a href="WordHasDefinition.html">here</a>.</p>
+<p class="auto-style8">
+The below sample shows how you can check if there is a definition available for 
+your term.</p>
+<div style="border-width: thin; border-style: solid; background-color: #E8E8E8;" class="auto-style9">
+	<p class="auto-style1"><strong>
+	Ti.API.info("Does Apple know the meeting of life?");
+	<br />
+	var hasDefinition =  referenceLibrary.wordHasDefinition('life');
+	<br />
+	Ti.API.info("Definition found? => " + hasDefinition);
+	</strong></p>
+</div>
+
+<h3 class="auto-style2">Showing Definition Dialog</h3>
+<p class="auto-style8">The showDialog method opens Apple&#39;s Dictionary view for 
+the term provided.</p>
+<ul class="auto-style8">
+	<li>
+	<p class="auto-style1">&nbsp;Callback methods are supported for the the 
+	&quot;Error&quot; and &quot;On Close of Dialog&quot; events.</p>
+	</li>
+	<li>
+	<p class="auto-style1">The Dictionary module also supports the animated and 
+	modalTransitionStyle properties.</p>
+	</li>
+
+</ul>
+<p class="auto-style8">For a detailed description of this method please click 
+<a href="ShowDialog.html">here</a>.</p>
+<p class="auto-style8">The below same shows how to use the showDialog method. For additional details please see the example and documentation folders within this project.</p>
+<div style="border-width: thin; border-style: solid; background-color: #E8E8E8;" class="auto-style9">
+	<p class="auto-style1"><strong>
+	function termDialogBoxHasBeenClosed(){<br />
+&nbsp;&nbsp;&nbsp; alert(&#39;Term Window Closed&#39;);<br />
+	};<br />
+	function termDialogHadError(e){<br />
+&nbsp;&nbsp;&nbsp; alert("Term Lookup Errored Due To: " + e.error);<br />
+	};</strong></p>
+	<div>
+		<p class="auto-style1"><strong>Ti.API.info(&quot;You can add an event to be called if 
+		there is an error&quot;);</strong>
+		<br />
+		<strong>referenceLibrary.</strong><wbr><strong>addEventListener(&#39;errored&#39;, 
+		termDialogHadError);</strong></p>
+	</div>
+	<div>
+		<p class="auto-style1"><strong>Ti.API.info(&quot;You can add an event to be called 
+		when the definition dialog is closed&quot;);</strong>
+		<br />
+		<strong>referenceLibrary.</strong><wbr><strong>addEventListener(&#39;closed&#39;, 
+		termDialogBoxHasBeenClosed);</strong></p>
+	</div>
+	<p class="auto-style1"><strong>
+	referenceLibrary.showDialog({<br />
+&nbsp;&nbsp;&nbsp; term:&#39;life&#39;, //This is the term to search for 
+	(REQUIRED)<br />
+&nbsp;&nbsp;&nbsp; animated:true, //Indicate if the dialog should be 
+	animated on open (OPTIONAL)<br />
+&nbsp;&nbsp;&nbsp; 
+	modalTransitionStyle:Ti.UI.iPhone.MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL 
+	//(OPTIONAL)<br />
+	});<br />
+	</strong></p>
+</div>
+
+<h2 class="auto-style1">Methods</h2>
+<table style="width: 92%" class="auto-style2">
+	<tr>
+		<td style="width: 208px" class="auto-style6"><strong>Method Name</strong></td>
+		<td style="width: 296px" class="auto-style6"><strong>Description</strong></td>
+	</tr>
+	<tr>
+		<td style="width: 208px; height: 23px" class="auto-style7"><strong>
+		<a href="IsSupported.html">isSupported</a></strong></td>
+		<td class="auto-style7" style="width: 296px; height: 23px">Returns a 
+		boolean whether the dictionary feature is available</td>
+	</tr>
+	<tr>
+		<td class="auto-style7" style="width: 208px"><strong>
+		<a href="WordHasDefinition.html">wordHasDefinition</a></strong></td>
+		<td class="auto-style7" style="width: 296px">Returns boolean if the 
+		dictionary service is able to find the definition for the provided term.</td>
+	</tr>
+	<tr>
+		<td class="auto-style7" style="width: 208px"><strong>
+		<a href="ShowDialog.html">showDialog</a></strong></td>
+		<td class="auto-style7" style="width: 296px">Opens Apple&#39;s dictionary 
+		definition modal window</td>
+	</tr>
+</table>
+
+<h2 class="auto-style1">What Isn&#39;t Supported?</h2>
+<p class="auto-style2">The benCoding.dictionary does not support returning a 
+view to attach within a UIPopoverController.</p>
+<h2 class="auto-style1">FAQ</h2>
+<table style="width: 92%" class="auto-style2">
+	<tr>
+		<td class="auto-style6" style="width: 279px"><strong>Question</strong></td>
+		<td class="auto-style6"><strong>Answer</strong></td>
+	</tr>
+	<tr>
+		<td style="width: 279px" class="auto-style7">Can I &quot;scrape&quot; the definition instead of using 
+		the Modal Dialog? </td>
+		<td class="auto-style7">Although technically possible this module does not provide this as 
+		it is a grey area in Apple&#39;s guidance on how to use this feature.</td>
+	</tr>
+	<tr>
+		<td style="width: 279px; height: 23px;" class="auto-style7">Can I change 
+		the style of the dialog?</td>
+		<td class="auto-style7" style="height: 23px">Apple has not yet provided 
+		any styling hooks into this dialog.</td>
+	</tr>
+	<tr>
+		<td style="width: 279px; height: 23px;" class="auto-style7">Is there an 
+		Android version?</td>
+		<td class="auto-style7" style="height: 23px">No, this is an iOS only 
+		wrapper around the native UIReferenceLibraryViewController component.</td>
+	</tr>
+</table>
+
+<h2 class="auto-style1">Licensing</h2>
+<p class="auto-style2">This project is licensed under the OSI 
+approved Apache Public License (version 2). For details please see the license 
+included with module.<br />
+<br />
+Developed by <a href="http://bahrenburgs.com">Ben Bahrenburg </a>on twitter
+<a href="http://twitter.com/bencoding">@benCoding</a></p>
+
+
+</body>
+
+</html>
