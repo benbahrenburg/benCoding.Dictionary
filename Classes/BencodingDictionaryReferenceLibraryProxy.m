@@ -15,17 +15,22 @@
 
 -(id)init
 {
-	// This is the designated initializer method and will always be called
-	// when the proxy is created.
-    hasMinOSVersion=NO;
-    //Check that the controller exists, this is available starting in iOS5
-    if(NSClassFromString(@"UIReferenceLibraryViewController"))
+    if (self = [super init])
     {
-        hasMinOSVersion=YES;
+	
+        // This is the designated initializer method and will always be called
+        // when the proxy is created.
+        hasMinOSVersion=NO;
+
+        //Check that the controller exists, this is available starting in iOS5
+        if(NSClassFromString(@"UIReferenceLibraryViewController"))
+        {
+            hasMinOSVersion=YES;
+        }
+        //NSLog(@"[ReferenceLibrary] isSupported %d", hasMinOSVersion);
     }
     
-    //NSLog(@"[ReferenceLibrary] isSupported %d", hasMinOSVersion);
-    return [super init];    
+    return self;
 }
 
 -(NSNumber*)isSupported:(id)args
