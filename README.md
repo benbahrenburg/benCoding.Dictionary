@@ -7,6 +7,19 @@ Use the native iOS dictionary service within your Titanium application.  This mo
 * You need Titanium 1.8.1 or greater.
 * This module will only work with iOS 5 or great.  
 
+<h2>Download the release</h2>
+
+There is two ways you can download this module. The go to the releases/UseIfDownloadingFromGithub folder. This will have a release compiled for anyone download it from github.
+
+You can also download it for free from Appcelerator's marketplace [here](https://marketplace.appcelerator.com/apps/1918).
+
+<h2>Building from source?</h2>
+
+If you are building from source you will need to do the following:
+* Modify the titanium.xcconfig file with the path to your Titanium installation
+* Make sure the the method moduleGUID in the class BencodingDictionaryModule has the variable marketPlace set to NO. This will avoid you running into any licensing issues.
+
+
 <h2>Setup</h2>
 
 * Download the latest release from the releases folder ( or you can build it yourself )

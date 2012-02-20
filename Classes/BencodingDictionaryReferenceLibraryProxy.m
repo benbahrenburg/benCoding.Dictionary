@@ -42,8 +42,7 @@
 {
     if(hasMinOSVersion==NO)
     {
-        //If you don't have the min version
-        //We just send back false
+        //If you don't have the min version we just send back false
         return NUMBOOL(NO);
     }
     else
@@ -56,7 +55,7 @@
         //Pull the term out of the arguments passed in
         NSString *term = [TiUtils stringValue:[args objectAtIndex:kTerm]];
         //Uncomment to made debugging easier
-        NSLog(@"[ReferenceLibrary] term provided  %d", term);
+        //NSLog(@"[ReferenceLibrary] term provided  %d", term);
         //Return the status
         return NUMBOOL([UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:term]);
     }
