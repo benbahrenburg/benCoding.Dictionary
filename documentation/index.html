@@ -136,6 +136,12 @@ the term provided.</p>
 		<strong>referenceLibrary.</strong><wbr><strong>addEventListener(&#39;closed&#39;, 
 		termDialogBoxHasBeenClosed);</strong></p>
 	</div>
+	<div>
+		<p class="auto-style1"><strong>//Uncomment to allow the dialog to support all orientations defined in your tiapp.xml file</strong>
+		<br />
+		<strong>//referenceLibrary.allowRotate=true;</strong></p>
+	</div>
+	
 	<p class="auto-style1"><strong>
 	referenceLibrary.showDialog({<br />
 &nbsp;&nbsp;&nbsp; term:&#39;life&#39;, //This is the term to search for 
@@ -174,6 +180,23 @@ the term provided.</p>
 		definition modal window</td>
 	</tr>
 </table>
+
+<h2 class="auto-style1">Properties</h2>
+<table style="width: 92%" class="auto-style2">
+	<tr>
+		<td style="width: 208px" class="auto-style6"><strong>Method Name</strong></td>
+		<td style="width: 296px" class="auto-style6"><strong>Description</strong></td>
+	</tr>
+	<tr>
+		<td style="width: 208px; height: 23px" class="auto-style7"><strong>
+		allowRotate</strong></td>
+		<td class="auto-style7" style="width: 296px; height: 23px">By setting 
+		the allowRotate property to TRUE the dictionary dialog will support all 
+		orientations defined in your tiapp.xml file.<br />
+		<br />
+		This property is FALSE by default, meaning portrait is only supported.</td>
+	</tr>
+	</table>
 
 <h2 class="auto-style1">What Isn&#39;t Supported?</h2>
 <p class="auto-style2">The benCoding.dictionary does not support returning a 

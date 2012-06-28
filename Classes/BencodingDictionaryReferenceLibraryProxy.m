@@ -10,9 +10,34 @@
 #import "TiApp.h"
 #import "TiUIiPhoneProxy.h"
 #import "referenceLibraryWrapperViewController.h"
+BOOL _allowRotate = NO;
+
+
+@implementation referenceLibraryWrapperViewController (AutoRotation)
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if(_allowRotate==NO)
+    {
+        return NO;
+    }
+    else
+    {
+        //Check if the orientation is supported in the Tiapp.xml settings
+        BOOL allowRotate = [[[TiApp app] controller] shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+        //If it is supported, we need to move the entire app. 
+        //Without doing this, our keyboard wont reposition itself
+        if(allowRotate==YES)
+        {
+            [[UIApplication sharedApplication] setStatusBarOrientation:interfaceOrientation animated:NO];
+        }
+        //We tell the app if we can rotate, ie is this a support orientation
+        return allowRotate;        
+    }
+}
+
+@end
+
 @implementation BencodingDictionaryReferenceLibraryProxy
-
-
 -(id)init
 {
     if (self = [super init])
@@ -38,6 +63,8 @@
     //This can call this to let them know if this feature is supported
     return NUMBOOL(hasMinOSVersion);
 }
+
+
 -(NSNumber*)wordHasDefinition:(id)args
 {
     if(hasMinOSVersion==NO)
@@ -93,6 +120,8 @@
         //Get the user's animated option
         BOOL showAnimated = [TiUtils boolValue:@"animated" properties:args def:NO];
         
+        _allowRotate = [TiUtils boolValue:[self valueForUndefinedKey:@"allowRotate"]def:NO];
+        
         //Create the UIReferenceController
         //We had to put a wrapper around this so, that is all this controller really is
         referenceLibraryWrapperViewController *reference = 
@@ -135,44 +164,5 @@
         [self fireEvent:@"closed" withObject:errorEvent];
     }    
 }
--(void)_destroy
-{
-	// This method is called from the dealloc method and is good place to
-	// release any objects and memory that have been allocated for the proxy.	
-    [super _destroy];
-}
-
--(void)dealloc
-{
-	// This method is called when the proxy is being deallocated. The superclass
-	// method calls the _destroy method.
-    
-	[super dealloc];
-}
-
--(id)_initWithPageContext:(id<TiEvaluator>)context
-{
-	// This method is one of the initializers for the proxy class. If the
-	// proxy is created without arguments then this initializer will be called.
-	// This method is also called from the other _initWithPageContext method.
-	// The superclass method calls the init and _configure methods.
-    
-	//NSLog(@"[PROXY LIFECYCLE EVENT] _initWithPageContext (no arguments)");
-    
-	return [super _initWithPageContext:context];
-}
-
--(id)_initWithPageContext:(id<TiEvaluator>)context_ args:(NSArray*)args
-{
-	// This method is one of the initializers for the proxy class. If the
-	// proxy is created with arguments then this initializer will be called.
-	// The superclass method calls the _initWithPageContext method without
-	// arguments.
-    
-	//NSLog(@"[PROXY LIFECYCLE EVENT] _initWithPageContext %@", args);
-    
-	return [super _initWithPageContext:context_ args:args];
-}
-
 
 @end

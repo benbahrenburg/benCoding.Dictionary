@@ -159,7 +159,11 @@ searchButton.addEventListener('click', function(){
 	askMe.addEventListener('click', function(e){
 		//They want to see the definition dialog
 		if(e.index===1){
-						
+
+			//If you want to support the same orientations as your app
+			//Set referenceLibrary.allowRotate=true;
+			//This will then support all of the orientations in your tiapp.xml file
+									
 			//Open the definition dialog window			
 			referenceLibrary.showDialog({
 					term:termText.value, //This is the term to search for (REQUIRED)

@@ -6,6 +6,7 @@
  */
 
 #import "referenceLibraryWrapperViewController.h"
+#import "TiApp.h"
 
 @implementation referenceLibraryWrapperViewController
 @synthesize delegate;
@@ -14,6 +15,8 @@
 {
     return [super initWithNibName:@"referenceLibraryWrapperViewController" bundle:nil];
 }
+
+
 - (id)initWithNibName:(NSString *)name bundle:(NSBundle *)bundle
 {
     return [self init];
@@ -31,7 +34,10 @@
 
 #pragma mark - View lifecycle
 
-
+-(void) foo
+{
+    
+}
 -(void) viewWillDisappear:(BOOL)animated
 {
     [[self delegate] referenceViewClosed];
@@ -47,10 +53,20 @@
     self.delegate=nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+//
+//        //Check if the orientation is supported in the Tiapp.xml settings
+//    BOOL allowRotate = [[[TiApp app] controller] shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+//        //If it is supported, we need to move the entire app. 
+//        //Without doing this, our keyboard wont reposition itself
+//    if(allowRotate==YES)
+//    {
+//        [[UIApplication sharedApplication] setStatusBarOrientation:interfaceOrientation animated:NO];
+//        
+//    }
+//    
+//    //We tell the app if we can rotate, ie is this a support orientation
+//    return allowRotate;        
+//
+//}
 @end

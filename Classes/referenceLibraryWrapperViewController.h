@@ -16,6 +16,7 @@
 {
     id <referenceLibraryWrapperViewControllerDelegate> delegate;
 }
+
 @property (retain) id delegate;
 
 @end
