@@ -34,10 +34,7 @@
 
 #pragma mark - View lifecycle
 
--(void) foo
-{
-    
-}
+
 -(void) viewWillDisappear:(BOOL)animated
 {
     [[self delegate] referenceViewClosed];
