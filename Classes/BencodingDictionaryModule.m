@@ -16,7 +16,7 @@
 // this is generated for your module, please do not change it
 -(id)moduleGUID
 {
-    bool marketPlace=YES;
+    bool marketPlace=NO;
     
     if(marketPlace)
     {
