@@ -13,6 +13,6 @@ copyright: Copyright (c) 2012 by benCoding.Com
 # these should not be edited
 name: dictionary
 moduleid: bencoding.dictionary
-guid: 12604cea-a670-41eb-af77-cd5f0c103a0c
+guid: 6d7c3d7e-eaf4-4704-8d36-ba72d88126e4
 platform: iphone
-minsdk: 1.8.1
+minsdk: 3.1.1
