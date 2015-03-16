@@ -125,7 +125,7 @@ BOOL _allowRotate = NO;
         //Create the UIReferenceController
         //We had to put a wrapper around this so, that is all this controller really is
         referenceLibraryWrapperViewController *reference = 
-        [[referenceLibraryWrapperViewController alloc] initWithTerm:term];
+        [[[referenceLibraryWrapperViewController alloc] initWithTerm:term] autorelease];
        
         //Add transition style if defined
         int style = [TiUtils intValue:@"modalTransitionStyle" properties:args def:-1];
